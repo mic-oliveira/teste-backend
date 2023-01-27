@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $contact = ContactType::create(['name' => 'telefone']);
         User::factory()->state(['email' => 'teste@teste.com','password' => bcrypt('teste')])
             ->has(Contact::factory()->state(['type_id' => $contact->id])->count(20), 'contacts')->create();
-        User::factory()->count(10)
+        User::factory()->state(['email' => 'teste2@teste.com','password' => bcrypt('teste')])
             ->has(Contact::factory()->state(['type_id' => $contact->id])->count(20), 'contacts')->create();
     }
 }
