@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+    web:
+        image: aronpc/php:8.2-nginx
+        working_dir: /app
+        volumes:
+            - ./:/app
+        depends_on:
+            - mysql
+        ports:
+            - '8081:8080'
+
+    mysql:
+        image: mysql:latest
+        environment:
+            MYSQL_ROOT_USER: ${DB_USERNAME}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+        volumes:
+            - mysql:/data/mysql
+        ports:
+            - '3306:3306'
+
+volumes:
+    mysql:
